@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 //        gmap = new HashMap<>();
 //        gmap.put("title", "dsdfd");
 //        lists.add(gmap);
+        //        setAdapter();
 //        setAdapter();
          requestData();
     }
