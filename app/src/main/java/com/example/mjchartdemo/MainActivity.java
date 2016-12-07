@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mToolbar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, AddConvActivity.class);
+                startActivity(intent);
             }
         });
 
