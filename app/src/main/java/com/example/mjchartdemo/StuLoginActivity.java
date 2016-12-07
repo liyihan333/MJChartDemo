@@ -1,7 +1,6 @@
 package com.example.mjchartdemo;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -24,9 +23,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.example.mjchartdemo.base.BaseActivity;
-import com.example.mjchartdemo.been.LoginError;
 import com.example.mjchartdemo.config.Constant;
-import com.example.mjchartdemo.laodingDialog.LoadingDialog;
 import com.example.mjchartdemo.urlconn.EdusStringCallback;
 import com.example.mjchartdemo.urlconn.ErrorToast;
 import com.example.mjchartdemo.utils.BadgeUtil;
@@ -107,7 +104,7 @@ public class StuLoginActivity extends BaseActivity implements View.OnClickListen
      */
     @SuppressWarnings("unchecked")
     private void initJudgeSave() {
-        Constant.proId = Constant.studentProId;
+        Constant.proId = "56cad8f89dc516b25972bacc";
         sPreferences = getSharedPreferences(Constant.proId, MODE_PRIVATE);
         Map<String, String> map = (Map<String, String>) sPreferences.getAll();
         int k = map.size();

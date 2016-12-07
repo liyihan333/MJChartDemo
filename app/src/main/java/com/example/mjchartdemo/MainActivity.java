@@ -1,11 +1,9 @@
 package com.example.mjchartdemo;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -54,17 +52,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         lv_view = (ListView) findViewById(R.id.lv_view);
-        Map<String, Object> gmap = new HashMap<>();
-        gmap.put("title", "dsdfd");
-        lists.add(gmap);
-        gmap = new HashMap<>();
-        gmap.put("title", "dsdfd");
-        lists.add(gmap);
-        gmap = new HashMap<>();
-        gmap.put("title", "dsdfd");
-        lists.add(gmap);
-        setAdapter();
-        // requestData();
+//        Map<String, Object> gmap = new HashMap<>();
+//        gmap.put("title", "dsdfd");
+//        lists.add(gmap);
+//        gmap = new HashMap<>();
+//        gmap.put("title", "dsdfd");
+//        lists.add(gmap);
+//        gmap = new HashMap<>();
+//        gmap.put("title", "dsdfd");
+//        lists.add(gmap);
+//        setAdapter();
+         requestData();
     }
 
     public void requestData() {

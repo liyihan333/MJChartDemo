@@ -5,15 +5,10 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -25,8 +20,8 @@ public class Constant {
 
     public static String sysUrl = "http://192.168.6.94:8080/edus_auto/";//汉普森项目
     public static String studentProId = "56df76b60cf2beac602aaed3";//学员端项目的Id
-    public final static String projectLoginUrl = "login_main.do";//登陆方法
-    public static String proId = "56df76b60cf2beac602aaed3";
+    public final static String projectLoginUrl = "login_interfaceLogin.do";//登陆方法
+    public static String proId = "56cad8f89dc516b25972bacc";
     public final static String proIdName = "proId";
     public static int topBarColor;
     public final static String tolist = "model_interfaceToList.do";
