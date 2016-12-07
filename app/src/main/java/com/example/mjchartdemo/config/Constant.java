@@ -91,6 +91,11 @@ public class Constant {
     public static String USERID;
     public final static String tableId ="tableId";
     public final  static String pageId ="pageId";
+    public final static String mainTableId ="mainTableId";
+    public final  static String mainPageId ="mainPageId";
+    public final static String mainId ="mainId";
+
+
 
 //    public static String teachPerPAGEID = "";
 //    public static String teachPerTABLEID = "";
