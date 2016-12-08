@@ -1,14 +1,17 @@
 package com.example.mjchartdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.example.mjchartdemo.adapter.ConvListBaseAdapter;
 import com.example.mjchartdemo.been.CommonToolbar;
 import com.example.mjchartdemo.config.Constant;
 import com.example.mjchartdemo.urlconn.EdusStringCallback;
@@ -27,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ListView lv_view;
     private List<Map<String, Object>> lists = new ArrayList<>();
+    private ConvListBaseAdapter adapter;
+    private String tableId;//请求会话列表的tableid
+    private int start = 0;
+    private final int limit = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        mToolbar.setRightButtonIcon(getResources().getDrawable(R.mipmap.ic_launcher));
+        mToolbar.setRightButtonIcon(getResources().getDrawable(R.mipmap.ic_add_pic));
         mToolbar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,27 +59,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
         lv_view = (ListView) findViewById(R.id.lv_view);
-//        Map<String, Object> gmap = new HashMap<>();
-//        gmap.put("title", "dsdfd");
-//        lists.add(gmap);
-//        gmap = new HashMap<>();
-//        gmap.put("title", "dsdfd");
-//        lists.add(gmap);
-//        gmap = new HashMap<>();
-//        gmap.put("title", "dsdfd");
-//        lists.add(gmap);
-        //        setAdapter();
-//        setAdapter();
-         requestData();
+
+        tableId = "17796";
+
+        setAdapter();
+        // requestData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestData();
     }
 
     public void requestData() {
+        lists.clear();
         String volleyUrl = Constant.sysUrl + Constant.tolist;
         Log.e("TAG", "学员端登陆地址 " + Constant.sysUrl + Constant.tolist);
         //参数
         Map<String, String> map = new HashMap<>();
-        map.put(Constant.tableId, "17796");
+        map.put(Constant.tableId, tableId);
         map.put(Constant.pageId, "7686");
+        map.put(Constant.start, start+"");
+        map.put(Constant.limit, limit+"");
 
 
         Log.e(TAG, "maplogi/" + map.toString());
@@ -92,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response, int id) {
                         Log.e(TAG, "onResponse: " + "  id  " + response);
-
+                        check(response);
 
                     }
                 });
@@ -111,19 +120,25 @@ public class MainActivity extends AppCompatActivity {
         if (menuListMap2 != null && menuListMap2.size() > 0) {
             for (int i = 0; i < menuListMap2.size(); i++) {
                 Map<String, Object> map = menuListMap2.get(i);
-                Map<String, Object> gmap = new HashMap<>();
-                gmap.put("title", map.get("AFM_6") + "");
-                lists.add(gmap);
+                lists.add(map);
             }
         }
+        adapter.notifyDataSetChanged();
+        Log.e(TAG, "check: " + adapter.getCount());
 
-        setAdapter();
     }
 
     private void setAdapter() {
-        SimpleAdapter adapter = new SimpleAdapter(this, lists, R.layout.conversation_list_item,
-                new String[]{"title"},
-                new int[]{R.id.tv_title});
+        adapter = new ConvListBaseAdapter(this,lists);
         lv_view.setAdapter(adapter);
+        lv_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e(TAG, "onItemClick: " + i + "/" + lists.get(i).get("T_17796_0").toString());
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                intent.putExtra("tableId", lists.get(i).get("T_17796_0").toString());
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.example.mjchartdemo.base.BaseActivity;
+import com.example.mjchartdemo.been.LoginError;
 import com.example.mjchartdemo.config.Constant;
 import com.example.mjchartdemo.urlconn.EdusStringCallback;
 import com.example.mjchartdemo.urlconn.ErrorToast;
@@ -295,32 +296,32 @@ public class StuLoginActivity extends BaseActivity implements View.OnClickListen
     // 新密码，为0则跳转，sp存储新密码
 
     private void check(String menuData) {
-//        if (menuData != null) {
-//            //获取error的值，判断
-//            LoginError loginError = JSON.parseObject(menuData, LoginError.class);
-//            if (loginError.getError() != 0) {
-//                Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
-//                dialog.dismiss();
-//            } else {
-//                //当成功登陆后存储正确的用户名和密码,
-//                Constant.USERNAME_ALL = nameValue;
-//                Constant.PASSWORD_ALL = pwdValue;
-//                //跳转至主页面并传递菜单数据
-//                getLoginName(menuData);
-////                if (cb_rmb_pwd.isChecked()) {
-////                    sPreferences.edit().putString("pwd", pwdValue).apply();
-////                } else {
-////                    sPreferences.edit().putString("pwd", "").apply();
-////                    mPassword.setText("");
-////                }
-//                sPreferences.edit().putString("name", nameValue).apply();
-//                sPreferences.edit().putString("pwd", pwdValue).apply();
-//                mainPage(menuData);//保存完用户名和密码，跳转到主页面
-//            }
-//        } else {
-//            dialog.dismiss();
-//            Toast.makeText(StuLoginActivity.this, "服务器超时", Toast.LENGTH_SHORT).show();
-//        }
+        if (menuData != null) {
+            //获取error的值，判断
+            LoginError loginError = JSON.parseObject(menuData, LoginError.class);
+            if (loginError.getError() != 0) {
+                Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            } else {
+                //当成功登陆后存储正确的用户名和密码,
+                Constant.USERNAME_ALL = nameValue;
+                Constant.PASSWORD_ALL = pwdValue;
+                //跳转至主页面并传递菜单数据
+                getLoginName(menuData);
+//                if (cb_rmb_pwd.isChecked()) {
+//                    sPreferences.edit().putString("pwd", pwdValue).apply();
+//                } else {
+//                    sPreferences.edit().putString("pwd", "").apply();
+//                    mPassword.setText("");
+//                }
+                sPreferences.edit().putString("name", nameValue).apply();
+                sPreferences.edit().putString("pwd", pwdValue).apply();
+                mainPage(menuData);//保存完用户名和密码，跳转到主页面
+            }
+        } else {
+            dialog.dismiss();
+            Toast.makeText(StuLoginActivity.this, "服务器超时", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //此方法传递菜单JSON数据

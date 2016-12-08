@@ -25,6 +25,9 @@ public class Constant {
     public final static String proIdName = "proId";
     public static int topBarColor;
     public final static String tolist = "model_interfaceToList.do";
+    public final static String start = "start";
+    public final static String limit = "limit";
+
 
     //    public static String sysUrl = "http://182.92.108.162/edus_auto/";//外网项目
     // public static String sysUrl = "http://192.168.6.171:8080/edus_auto/";//小庞项目
@@ -42,7 +45,7 @@ public class Constant {
 //    public final static String requestListSet = "model_interfaceToList.do";//获得列表配置数据和data数据方法
 //    public final static String requestListData = "model_ajaxList.do";//仅获得data数据方法
 //    public final static String requestAdd = "add_interfaceToAdd.do";
-//    public final static String commitAdd = "add_interfaceAdd.do";
+    public final static String commitAdd = "add_interfaceAdd.do";
 //    public final static String requestRowsAdd = "addRelation_interfaceToAddRelationPage.do";
 //
 //    public final static String admissionUrl = "phone_startSchoolInfo.do";
@@ -97,7 +100,7 @@ public class Constant {
 
 
 
-//    public static String teachPerPAGEID = "";
+    //    public static String teachPerPAGEID = "";
 //    public static String teachPerTABLEID = "";
 //    public static String teachBackPAGEID = "";
 //    public static String teachBackTABLEID = "";

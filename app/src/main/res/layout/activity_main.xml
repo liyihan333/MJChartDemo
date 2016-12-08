@@ -21,7 +21,7 @@
     <ListView
         android:id="@+id/lv_view"
         android:dividerHeight="2dp"
-        android:divider="@color/red"
+        android:divider="@color/tv_dedede"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
