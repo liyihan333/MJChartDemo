@@ -22,6 +22,8 @@ import java.util.Map;
 public class ConvListBaseAdapter extends BaseAdapter {
     private Context context;
     private List<Map<String, Object>> list = new ArrayList<>();
+    private List<Map<String, Object>> childlist = new ArrayList<>();
+
     private LayoutInflater inflater = null;
 
     public ConvListBaseAdapter(Context context, List<Map<String, Object>> list) {

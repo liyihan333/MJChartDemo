@@ -74,6 +74,8 @@
         <activity
             android:name=".ChatActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".ConvListActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

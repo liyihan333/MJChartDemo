@@ -63,6 +63,8 @@ public class ChatBaseAdapter extends BaseAdapter {
             holder.iv_right = (ImageView) view.findViewById(R.id.iv_right);
             holder.tv_time_left = (TextView) view.findViewById(R.id.tv_time_left);
             holder.tv_time_right = (TextView) view.findViewById(R.id.tv_time_right);
+            holder.tv_name_left = (TextView) view.findViewById(R.id.tv_name_left);
+            holder.tv_name_right = (TextView) view.findViewById(R.id.tv_name_right);
 
             view.setTag(holder);//绑定ViewHolder对象
         } else {
@@ -95,7 +97,7 @@ public class ChatBaseAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        TextView tv_left, tv_right, tv_time_left, tv_time_right;
+        TextView tv_left, tv_right, tv_time_left, tv_time_right,tv_name_left,tv_name_right;
         LinearLayout ll_left, ll_right;
         ImageView iv_left;
         ImageView iv_right;

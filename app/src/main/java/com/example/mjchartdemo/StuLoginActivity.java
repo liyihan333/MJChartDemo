@@ -278,7 +278,8 @@ public class StuLoginActivity extends BaseActivity implements View.OnClickListen
                             check(response);
 
                             Intent intent = new Intent();
-                            intent.setClass(StuLoginActivity.this, MainActivity.class);
+                        //    intent.setClass(StuLoginActivity.this, MainActivity.class);
+                            intent.setClass(StuLoginActivity.this, ConvListActivity.class);
                             startActivity(intent);
 
                         }
@@ -366,7 +367,8 @@ public class StuLoginActivity extends BaseActivity implements View.OnClickListen
 
 
             Intent intent = new Intent();
-            intent.setClass(StuLoginActivity.this, MainActivity.class);
+//            intent.setClass(StuLoginActivity.this, MainActivity.class);
+            intent.setClass(StuLoginActivity.this, ConvListActivity.class);
             if (menuListMap1 != null && menuListMap1.size() > 0) {
                 intent.putExtra("jsonArray", JSON.toJSONString(menuListMap1));
             } else {
@@ -435,7 +437,7 @@ public class StuLoginActivity extends BaseActivity implements View.OnClickListen
 
     public void toSetIpPortProject(View view) {
         Intent intent = new Intent();
-        intent.setClass(StuLoginActivity.this, MainActivity.class);
+        intent.setClass(StuLoginActivity.this, ConvListActivity.class);
         startActivity(intent);
 
     }
