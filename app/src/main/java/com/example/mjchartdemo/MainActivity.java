@@ -1,13 +1,16 @@
 package com.example.mjchartdemo;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -16,6 +19,7 @@ import com.example.mjchartdemo.been.CommonToolbar;
 import com.example.mjchartdemo.config.Constant;
 import com.example.mjchartdemo.urlconn.EdusStringCallback;
 import com.example.mjchartdemo.urlconn.ErrorToast;
+import com.example.mjchartdemo.utils.ExampleUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.ArrayList;
@@ -39,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        registerMessageReceiver();  // used for receive msg
         CommonToolbar mToolbar = (CommonToolbar) findViewById(R.id.common_toolbar);
 
-        mToolbar.setTitle("会话列表");
+        mToolbar.setTitle("聊天室");
         mToolbar.setLeftButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +71,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
+    @Override
     protected void onResume() {
+        isForeground = true;
         super.onResume();
         requestData();
     }
@@ -75,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public void requestData() {
         lists.clear();
         String volleyUrl = Constant.sysUrl + Constant.tolist;
-        Log.e("TAG", "学员端登陆地址 " + Constant.sysUrl + Constant.tolist);
+        Log.e(TAG, "学员端登陆地址 " + Constant.sysUrl + Constant.tolist);
         //参数
         Map<String, String> map = new HashMap<>();
         map.put(Constant.tableId, tableId);
@@ -140,5 +150,50 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public static boolean isForeground = false;
+    //for receive customer msg from jpush server
+    private MessageReceiver mMessageReceiver;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
+    public void registerMessageReceiver() {
+        mMessageReceiver = new MessageReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(MESSAGE_RECEIVED_ACTION);
+        registerReceiver(mMessageReceiver, filter);
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
+                String messge = intent.getStringExtra(KEY_MESSAGE);
+                String extras = intent.getStringExtra(KEY_EXTRAS);
+                StringBuilder showMsg = new StringBuilder();
+                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
+                if (!ExampleUtil.isEmpty(extras)) {
+                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
+                }
+                setCostomMsg(showMsg.toString());
+            }
+        }
+    }
+
+    private void setCostomMsg(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "setCostomMsg: msg "+msg);
+    }
+
+    @Override
+    public void onDestroy() {
+        unregisterReceiver(mMessageReceiver);
+        super.onDestroy();
+//        Utils.stopPollingService(this, SessionService.class, SessionService.ACTION);
+
     }
 }

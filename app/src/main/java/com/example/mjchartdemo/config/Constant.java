@@ -15,13 +15,14 @@ import java.util.regex.PatternSyntaxException;
 
 /**
  * Created by Administrator on 2015/11/28 0028.
+ *
  */
 public class Constant {
 
     public static String sysUrl = "http://192.168.6.94:8080/edus_auto/";//汉普森项目
-    public static String studentProId = "56df76b60cf2beac602aaed3";//学员端项目的Id
+    public static String studentProId = "";//学员端项目的Id
     public final static String projectLoginUrl = "login_interfaceLogin.do";//登陆方法
-    public static String proId = "56cad8f89dc516b25972bacc";
+    public static String proId = "56cad8f89dc516b25972bacc";//56df76b60cf2beac602aaed3
     public final static String proIdName = "proId";
     public static int topBarColor;
     public final static String tolist = "model_interfaceToList.do";

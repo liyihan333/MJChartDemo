@@ -10,6 +10,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库（不需要的删除即可）。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "com.kwsoft.kehuhua.adcustom",
+                JPUSH_APPKEY : "af01b0f8546cb4d2def0e1e1", //JPush上注册的包名对应的appkey（*换成你的*）
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -77,6 +87,7 @@ dependencies {
     //mp3转码
     compile 'org.kymjs.kjframe:kjframe:2.6'
     compile files('libs/core-3.1.0.jar')
-
+    compile 'cn.jiguang.sdk:jpush:3.0.0'  // 此处以JPush 3.0.0 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.0.0'  // 此处以JCore 1.0.0 版本为例。
 
 }

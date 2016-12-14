@@ -254,7 +254,7 @@ public class StuLoginActivity extends BaseActivity implements View.OnClickListen
             Map<String, String> map = new HashMap<>();
             map.put(Constant.USER_NAME, nameValue);
             map.put(Constant.PASSWORD, pwdValue);
-            map.put(Constant.proIdName, Constant.proId);
+            map.put(Constant.proIdName, "56df76b60cf2beac602aaed3");
             map.put(Constant.timeName, Constant.menuAlterTime);
             map.put(Constant.sourceName, Constant.sourceInt);
 
@@ -302,7 +302,7 @@ public class StuLoginActivity extends BaseActivity implements View.OnClickListen
             LoginError loginError = JSON.parseObject(menuData, LoginError.class);
             if (loginError.getError() != 0) {
                 Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+//                dialog.dismiss();
             } else {
                 //当成功登陆后存储正确的用户名和密码,
                 Constant.USERNAME_ALL = nameValue;

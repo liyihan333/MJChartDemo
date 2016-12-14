@@ -15,10 +15,13 @@ import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
 
@@ -40,7 +43,13 @@ public class MyApplication extends Application {
        // Fresco.initialize(this);
 
         initIpPort();
-
+//初始化sdk
+        JPushInterface.setDebugMode(true);//正式版的时候设置false，关闭调试
+        JPushInterface.init(this);
+        //建议添加tag标签，发送消息的之后就可以指定tag标签来发送了
+        Set<String> set = new HashSet<>();
+        set.add("andfixdemo");//名字任意，可多添加几个
+        JPushInterface.setTags(this, set, null);//设置标签
     }
 
     @SuppressWarnings("unchecked")
